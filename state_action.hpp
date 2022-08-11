@@ -73,8 +73,6 @@ namespace state
 
 	public:
 		action_flag flag_;
-
-		Enum
 	};
 
 
