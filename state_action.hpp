@@ -16,21 +16,22 @@ namespace state
 
 	using action_flag = flag_base<uint16_t, ActionFlag>;
 
-	template<typename Enum, Enum state>
+	template<typename Enum>
 	class basic_state_action
 	{
-	public:
-		constexpr static Enum value = state;
-
 	public:
 		virtual ~basic_state_action() = default;
 
 		virtual bool invoke_action() const = 0;
+
+		virtual Enum get_enum() = 0;
 	};
 
-	template<typename Enum, Enum state>
-	class default_state_action : public basic_state_action<Enum,state>
+	template<typename Enum, Enum es>
+	class default_state_action : public basic_state_action<Enum>
 	{
+	public:
+		constexpr static Enum value = es;
 	public:
 		void invoke_action() override final
 		{
@@ -54,6 +55,11 @@ namespace state
 			return update();
 		}
 
+		Enum get_enum() override
+		{
+			return value;
+		}
+
 	public:
 		virtual void initialize() {};
 
@@ -67,6 +73,8 @@ namespace state
 
 	public:
 		action_flag flag_;
+
+		Enum
 	};
 
 
