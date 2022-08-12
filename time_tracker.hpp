@@ -3,9 +3,12 @@
 
 namespace state
 {
-	template<typename Time, typename Traits>
+	template<typename Time, typename Traits = detail::time_traits<Time>>
 	class baisc_time_tracker
 	{
+	public:
+		constexpr static auto zero = Traits::zero;
+
 	public:
 		baisc_time_tracker(Time t)
 			: expiry_time_(t)
@@ -34,5 +37,8 @@ namespace state
 	};
 
 	template<typename T>
-	using time_tracker = baisc_time_tracker<T, detail::time_traits<T>>;
+	using micro_time_tracker = baisc_time_tracker<T, detail::time_traits<detail::milliseconds<T>>>;
+
+	template<typename T>
+	using second_time_tracker = baisc_time_tracker<T, detail::time_traits<detail::seconds<T>>>;
 }

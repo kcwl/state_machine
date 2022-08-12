@@ -8,44 +8,63 @@ namespace state
 		using namespace std::chrono_literals;
 
 		template<typename T>
-		struct time_traits {};
-
-		template<>
-		struct time_traits<std::chrono::milliseconds>
+		struct milliseconds
 		{
-			static void increament(std::chrono::milliseconds& time, const std::chrono::milliseconds diff)
+			using type = T;
+		};
+
+		template<typename T>
+		struct seconds
+		{
+			using type = T;
+		};
+
+		template<typename T>
+		struct time_traits;
+
+		template<typename T>
+		struct time_traits<milliseconds<T>>
+		{
+			using value_type = typename milliseconds<T>::type;
+			static void increament(value_type& time, const value_type& diff)
 			{
 				time += diff;
 			}
 
-			static bool passed(const std::chrono::microseconds& time)
+			static bool passed(const value_type& time)
 			{
 				return time <= 0ms;
 			}
 
-			static void assignment(std::chrono::microseconds& time, const std::chrono::microseconds& diff)
+			static void assignment(value_type& time, const value_type& diff)
 			{
 				time = diff;
 			}
+
+			constexpr static auto zero = value_type(0ms);
 		};
 
-		template<>
-		struct time_traits<std::chrono::seconds>
+		template<typename T>
+		struct time_traits<seconds<T>>
 		{
-			static void increament(std::chrono::seconds& time, const std::chrono::seconds diff)
+			using value_type = typename milliseconds<T>::type;
+
+			static void increament(value_type& time, const value_type& diff)
 			{
 				time += diff;
 			}
 
-			static bool passed(const std::chrono::seconds& time)
+			static bool passed(const value_type& time)
 			{
 				return time <= 0s;
 			}
 
-			static void assignment(std::chrono::seconds& time, const std::chrono::seconds& diff)
+			static void assignment(value_type& time, const value_type& diff)
 			{
 				time = diff;
 			}
+
+			constexpr static auto zero = std::chrono::seconds(0s);
 		};
 	}
 
