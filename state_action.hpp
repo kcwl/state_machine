@@ -22,7 +22,7 @@ namespace state
 	public:
 		virtual ~basic_state_action() = default;
 
-		virtual bool invoke_action() const = 0;
+		virtual bool invoke_action(task_base* task) = 0;
 
 		virtual Enum get_enum() = 0;
 	};
@@ -33,10 +33,10 @@ namespace state
 	public:
 		constexpr static Enum value = es;
 	public:
-		void invoke_action() override final
+		bool invoke_action(task_base* task) override final
 		{
 			if (flag_.has(ActionFlag::Action_Flag_Finalize))
-				return;
+				return false;
 
 			if (flag_.has(ActionFlag::Action_Flag_Initialize))
 			{
@@ -52,7 +52,7 @@ namespace state
 				reset();
 			}
 
-			return update();
+			return update(task);
 		}
 
 		Enum get_enum() override
@@ -69,7 +69,7 @@ namespace state
 
 		virtual void deactivate() {};
 
-		virtual bool update(const task_base* task) = 0;
+		virtual bool update(task_base* task) = 0;
 
 	public:
 		action_flag flag_;
@@ -89,12 +89,12 @@ namespace state
 		}
 
 	public:
-		bool update(const task_base* task) override final
+		bool update(task_base* task) override final
 		{
 			return func_(task);
 		}
 
 	private:
-		std::function<bool(const task_base*)> func_;
+		std::function<bool(task_base*)> func_;
 	};
 }
