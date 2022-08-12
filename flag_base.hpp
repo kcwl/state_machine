@@ -21,40 +21,19 @@ namespace state
 		}
 
 	public:
-		T operator|(R rhs)
-		{
-			return flag_ | static_cast<T>(rhs);
-		}
-
-		void operator|=(R rhs)
-		{
-			return flag_ |= rhs;
-		}
-
-		T operator&(R rhs)
-		{
-			return flag_ & static_cast<T>(rhs);
-		}
-
-		void operator&=(R rhs)
-		{
-			return flag_ &= rhs;
-		}
-
-	public:
 		void add(R f)
 		{
-			flag_ = flag_ &= ~(f | 1) | f;
+			flag_ = flag_ &= ~ static_cast<T>(f) | static_cast<T>(f);
 		}
 
 		void remove(R f)
 		{
-			flag_ = flag_ &= ~(f | 1);
+			flag_ = flag_ &= ~static_cast<T>(f);
 		}
 
 		bool has(R f)
 		{
-			return (flag_ & f) != 0;
+			return (flag_ & static_cast<T>(f)) != 0;
 		}
 
 	private:
