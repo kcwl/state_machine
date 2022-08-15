@@ -3,9 +3,7 @@
 #include <vector>
 #include <memory>
 #include <functional>
-#include "stdint.hpp"
 #include "state_action.hpp"
-#include "flag_base.hpp"
 #include "time_tracker.hpp"
 
 namespace state
@@ -47,7 +45,7 @@ namespace state
 	template<typename Timer, typename Enum>
 	class state_machine
 	{
-		using drive_flag = flag_base<uint8_t, DriveFlag>;
+		using drive_flag = impl::flag_base<uint8_t, DriveFlag>;
 
 	public:
 		state_machine()
@@ -125,7 +123,7 @@ namespace state
 
 			current_state_ = (*top)->get_enum();
 
-			if ((*top)->invoke_action(nullptr))
+			if ((*top)->invoke_action())
 			{
 				remove();
 			}

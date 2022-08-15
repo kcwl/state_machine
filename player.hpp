@@ -14,7 +14,42 @@ namespace state
 		climb = 0x8
 	};
 
+	static int a = 1;
+
 	using namespace std::chrono_literals;
+
+	template<MoveFlag f>
+	class player_action : public default_state_action<MoveFlag, f>
+	{
+	public:
+		template<typename Func>
+		player_action(Func&& func, impl::ActionFlag flag = impl::ActionFlag::Action_Flag_None)
+			: default_state_action<MoveFlag, f>(std::forward<Func>(func), flag)
+		{
+
+		}
+
+	public:
+		void initialize() override
+		{
+			std::cout << "player action initialize" << std::endl;
+		}
+
+		void finalize() override
+		{
+			std::cout << "player action finalize" << std::endl;
+		}
+
+		void reset() override
+		{
+			std::cout << "player action reset" << std::endl;
+		}
+
+		void deactivate() override
+		{
+			std::cout << "player action dectivate" << std::endl;
+		}
+	};
 
 	class player : public state_machine<std::chrono::microseconds, MoveFlag>
 	{
@@ -25,32 +60,32 @@ namespace state
 		template<MoveFlag f>
 		void pass()
 		{
-			add(state_traits<f>::delivery(this));
+			add(state_traits<f>::template delivery(this));
 		}
 
 	private:
-		bool walk(task_base* task)
+		bool walk(int task)
 		{
 			release(task);
 			std::cout << "player is walking" << std::endl;
 			return true;
 		}
 
-		bool run(task_base* task)
+		bool run(int task)
 		{
 			release(task);
 			std::cout << "player is running" << std::endl;
 			return true;
 		}
 
-		bool jump(task_base* task)
+		bool jump(int task)
 		{
 			release(task);
 			std::cout << "player is jumping" << std::endl;
 			return true;
 		}
 
-		bool climb(task_base* task)
+		bool climb(int task)
 		{
 			release(task);
 			std::cout << "player is climbing" << std::endl;
@@ -58,14 +93,14 @@ namespace state
 		}
 
 		template<MoveFlag f>
-		struct state_traits{};
+		struct state_traits {};
 
 		template<>
 		struct state_traits<MoveFlag::walk>
 		{
 			static std::shared_ptr<basic_state_action<MoveFlag>> delivery(player* player_ptr)
 			{
-				return std::make_shared<state_action<MoveFlag, MoveFlag::walk>>(std::bind(&player::walk, player_ptr, std::placeholders::_1));
+				return std::make_shared<player_action<MoveFlag::walk>>(std::bind(&player::walk, player_ptr, a), impl::ActionFlag::Action_Flag_Initialize);
 			}
 		};
 
@@ -74,7 +109,7 @@ namespace state
 		{
 			static std::shared_ptr<basic_state_action<MoveFlag>> delivery(player* player_ptr)
 			{
-				return std::make_shared<state_action<MoveFlag, MoveFlag::run>>(std::bind(&player::run, player_ptr, std::placeholders::_1));
+				return std::make_shared<player_action<MoveFlag::run>>(std::bind(&player::run, player_ptr, a));
 			}
 		};
 
@@ -83,7 +118,7 @@ namespace state
 		{
 			static std::shared_ptr<basic_state_action<MoveFlag>> delivery(player* player_ptr)
 			{
-				return std::make_shared<state_action<MoveFlag, MoveFlag::jump>>(std::bind(&player::jump, player_ptr, std::placeholders::_1));
+				return std::make_shared<player_action<MoveFlag::jump>>(std::bind(&player::jump, player_ptr, a));
 			}
 		};
 
@@ -92,7 +127,7 @@ namespace state
 		{
 			static std::shared_ptr<basic_state_action<MoveFlag>> delivery(player* player_ptr)
 			{
-				return std::make_shared<state_action<MoveFlag, MoveFlag::climb>>(std::bind(&player::climb, player_ptr, std::placeholders::_1));
+				return std::make_shared<player_action<MoveFlag::climb>>(std::bind(&player::climb, player_ptr, a));
 			}
 		};
 	};

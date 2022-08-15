@@ -133,12 +133,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="detail.hpp" />
-    <ClInclude Include="flag_base.hpp" />
+    <ClInclude Include="flag.hpp" />
+    <ClInclude Include="impl\flag_base.hpp" />
+    <ClInclude Include="impl\flag_def.hpp" />
     <ClInclude Include="player.hpp" />
     <ClInclude Include="state_action.hpp" />
     <ClInclude Include="state_machine.hpp" />
-    <ClInclude Include="stdint.hpp" />
-    <ClInclude Include="task_base.hpp" />
+    <ClInclude Include="impl\stdint.hpp" />
     <ClInclude Include="time_tracker.hpp" />
     <ClInclude Include="time_traits.hpp" />
   </ItemGroup>
