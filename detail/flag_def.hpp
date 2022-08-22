@@ -1,7 +1,7 @@
 #pragma once
 #include "stdint.hpp"
 
-namespace state
+namespace statemachine
 {
 	namespace detail
 	{

@@ -6,13 +6,13 @@
 
 int main()
 {
-    state::player pl;
+    statemachine::player pl;
 
-    pl.pass<state::MoveFlag::walk>();
+    pl.pass<statemachine::MoveFlag::walk>();
 
     pl.update();
 
-    pl.pass<state::MoveFlag::run>();
+    pl.pass<statemachine::MoveFlag::run>();
 
     pl.update();
 

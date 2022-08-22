@@ -6,7 +6,7 @@
 #include "state_action.hpp"
 #include "time_tracker.hpp"
 
-namespace state
+namespace statemachine
 {
 	enum class DriveFlag : uint8_t
 	{

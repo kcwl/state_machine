@@ -3,7 +3,7 @@
 #include "detail.hpp"
 #include "state_machine.hpp"
 
-namespace state
+namespace statemachine
 {
 	enum class MoveFlag :uint8_t
 	{
@@ -66,28 +66,28 @@ namespace state
 	private:
 		bool walk(int task)
 		{
-			release(task);
+			ignore(task);
 			std::cout << "player is walking" << std::endl;
 			return true;
 		}
 
 		bool run(int task)
 		{
-			release(task);
+			ignore(task);
 			std::cout << "player is running" << std::endl;
 			return true;
 		}
 
 		bool jump(int task)
 		{
-			release(task);
+			ignore(task);
 			std::cout << "player is jumping" << std::endl;
 			return true;
 		}
 
 		bool climb(int task)
 		{
-			release(task);
+			ignore(task);
 			std::cout << "player is climbing" << std::endl;
 			return true;
 		}

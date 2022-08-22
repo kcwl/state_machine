@@ -1,7 +1,7 @@
 #pragma once
 #include <type_traits>
 
-namespace state
+namespace statemachine
 {
 	namespace detail
 	{

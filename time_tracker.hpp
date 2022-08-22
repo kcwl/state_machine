@@ -1,7 +1,7 @@
 #pragma once
 #include "detail/time_traits.hpp"
 
-namespace state
+namespace statemachine
 {
 	template<typename Time, typename Traits = detail::time_traits<Time>>
 	class baisc_time_tracker

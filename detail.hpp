@@ -1,10 +1,10 @@
 #pragma once
 
-namespace state
+namespace statemachine
 {
 	template<typename T>
-	void release(const T&){}
+	void ignore(const T&){}
 
 	template<typename T>
-	void release(const T*){}
+	void ignore(const T*){}
 }

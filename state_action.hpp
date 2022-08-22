@@ -2,7 +2,7 @@
 #include <functional>
 #include "flag.hpp"
 
-namespace state
+namespace statemachine
 {
 	template<typename Enum>
 	class basic_state_action
