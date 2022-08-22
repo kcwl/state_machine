@@ -8,16 +8,6 @@
 
 namespace statemachine
 {
-	enum class DriveFlag : uint8_t
-	{
-		Drive_Flag_None = 0x0,
-		Drive_Flag_Update = 0x1,
-		Drive_Flag_Initialize = 0x2,
-		Drive_Flag_Pending = 0x4,
-
-		Drive_Flag_Delay = Drive_Flag_Update | Drive_Flag_Pending
-	};
-
 	class delay_action
 	{
 	public:

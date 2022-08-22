@@ -135,7 +135,7 @@
     <ClInclude Include="detail.hpp" />
     <ClInclude Include="flag.hpp" />
     <ClInclude Include="detail\flag_base.hpp" />
-    <ClInclude Include="detail\flag_def.hpp" />
+    <ClInclude Include="flag_def.hpp" />
     <ClInclude Include="detail\time_traits.hpp" />
     <ClInclude Include="player.hpp" />
     <ClInclude Include="state_action.hpp" />

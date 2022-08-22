@@ -23,7 +23,7 @@ namespace statemachine
 	{
 	public:
 		template<typename Func>
-		player_action(Func&& func, detail::ActionFlag flag = detail::ActionFlag::Action_Flag_None)
+		player_action(Func&& func, ActionFlag flag = ActionFlag::Action_Flag_None)
 			: default_state_action<MoveFlag, f>(std::forward<Func>(func), flag)
 		{
 
@@ -100,7 +100,7 @@ namespace statemachine
 		{
 			static std::shared_ptr<basic_state_action<MoveFlag>> delivery(player* player_ptr)
 			{
-				return std::make_shared<player_action<MoveFlag::walk>>(std::bind(&player::walk, player_ptr, a), detail::ActionFlag::Action_Flag_Initialize);
+				return std::make_shared<player_action<MoveFlag::walk>>(std::bind(&player::walk, player_ptr, a), ActionFlag::Action_Flag_Initialize);
 			}
 		};
 

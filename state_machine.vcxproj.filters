@@ -38,9 +38,6 @@
     <ClInclude Include="detail.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="detail\flag_def.hpp">
-      <Filter>头文件\detail</Filter>
-    </ClInclude>
     <ClInclude Include="flag.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -52,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="detail\time_traits.hpp">
       <Filter>头文件\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="flag_def.hpp">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
