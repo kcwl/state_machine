@@ -141,6 +141,7 @@
     <ClInclude Include="state_action.hpp" />
     <ClInclude Include="state_machine.hpp" />
     <ClInclude Include="detail\stdint.hpp" />
+    <ClInclude Include="state_machine_regist.hpp" />
     <ClInclude Include="time_tracker.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

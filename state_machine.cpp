@@ -8,11 +8,11 @@ int main()
 {
     statemachine::player pl;
 
-    pl.pass<statemachine::MoveFlag::walk>();
+    pl.pass<statemachine::MoveFlag::walk>(1);
 
     pl.update();
 
-    pl.pass<statemachine::MoveFlag::run>();
+    pl.pass<statemachine::MoveFlag::run>(1);
 
     pl.update();
 

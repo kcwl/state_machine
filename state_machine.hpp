@@ -5,6 +5,7 @@
 #include <functional>
 #include "state_action.hpp"
 #include "time_tracker.hpp"
+#include "state_machine_regist.hpp"
 
 namespace statemachine
 {
@@ -125,6 +126,11 @@ namespace statemachine
 			timer_.reset(diff_);
 		}
 
+		void set_action_flag(ActionFlag flag)
+		{
+			action_flag_.add(flag);
+		}
+
 	private:
 		void resolve_delay_action()
 		{
@@ -135,6 +141,9 @@ namespace statemachine
 				delay_actions_.pop_front();
 			}
 		}
+
+	protected:
+		ActionFlag action_flag_;
 
 	private:
 		drive_flag drive_flag_;

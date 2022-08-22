@@ -53,5 +53,8 @@
     <ClInclude Include="flag_def.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="state_machine_regist.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

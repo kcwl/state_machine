@@ -14,8 +14,6 @@ namespace statemachine
 		climb = 0x8
 	};
 
-	static int a = 1;
-
 	using namespace std::chrono_literals;
 
 	template<MoveFlag f>
@@ -57,11 +55,12 @@ namespace statemachine
 		player() = default;
 
 	public:
-		template<MoveFlag f>
-		void pass()
-		{
-			add(state_traits<f>::template delivery(this));
-		}
+		Regist_Begin(MoveFlag);
+			Regist_Content(MoveFlag::walk, &walk);
+			Regist_Content(MoveFlag::run, &run);
+			Regist_Content(MoveFlag::jump, &jump);
+			Regist_Content(MoveFlag::climb, &climb);
+		Regist_End(player_action);
 
 	private:
 		bool walk(int task)
@@ -91,44 +90,5 @@ namespace statemachine
 			std::cout << "player is climbing" << std::endl;
 			return true;
 		}
-
-		template<MoveFlag f>
-		struct state_traits {};
-
-		template<>
-		struct state_traits<MoveFlag::walk>
-		{
-			static std::shared_ptr<basic_state_action<MoveFlag>> delivery(player* player_ptr)
-			{
-				return std::make_shared<player_action<MoveFlag::walk>>(std::bind(&player::walk, player_ptr, a), ActionFlag::Action_Flag_Initialize);
-			}
-		};
-
-		template<>
-		struct state_traits<MoveFlag::run>
-		{
-			static std::shared_ptr<basic_state_action<MoveFlag>> delivery(player* player_ptr)
-			{
-				return std::make_shared<player_action<MoveFlag::run>>(std::bind(&player::run, player_ptr, a));
-			}
-		};
-
-		template<>
-		struct state_traits<MoveFlag::jump>
-		{
-			static std::shared_ptr<basic_state_action<MoveFlag>> delivery(player* player_ptr)
-			{
-				return std::make_shared<player_action<MoveFlag::jump>>(std::bind(&player::jump, player_ptr, a));
-			}
-		};
-
-		template<>
-		struct state_traits<MoveFlag::climb>
-		{
-			static std::shared_ptr<basic_state_action<MoveFlag>> delivery(player* player_ptr)
-			{
-				return std::make_shared<player_action<MoveFlag::climb>>(std::bind(&player::climb, player_ptr, a));
-			}
-		};
 	};
 }
