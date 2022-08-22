@@ -1,5 +1,5 @@
 #pragma once
-#include "impl/time_traits.hpp"
+#include "detail/time_traits.hpp"
 
 namespace state
 {

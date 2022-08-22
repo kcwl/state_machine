@@ -3,7 +3,7 @@
 
 namespace state
 {
-	namespace impl
+	namespace detail
 	{
 		enum class ActionFlag : uint16_t
 		{

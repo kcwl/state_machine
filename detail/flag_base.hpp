@@ -3,7 +3,7 @@
 
 namespace state
 {
-	namespace impl
+	namespace detail
 	{
 		template<typename T, typename R>
 			requires(std::is_integral_v<T>&& std::is_enum_v<R>)

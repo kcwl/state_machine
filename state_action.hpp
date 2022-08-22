@@ -23,7 +23,7 @@ namespace state
 
 	public:
 		template<typename Func>
-		default_state_action(Func&& f, impl::ActionFlag flag)
+		default_state_action(Func&& f, detail::ActionFlag flag)
 			: func_(std::forward<Func>(f))
 		{
 			flag_.add(flag);
@@ -34,19 +34,19 @@ namespace state
 	public:
 		bool invoke_action() override final
 		{
-			if (flag_.has(impl::ActionFlag::Action_Flag_Finalize))
+			if (flag_.has(detail::ActionFlag::Action_Flag_Finalize))
 				return false;
 
-			if (flag_.has(impl::ActionFlag::Action_Flag_Initialize))
+			if (flag_.has(detail::ActionFlag::Action_Flag_Initialize))
 			{
-				flag_.remove(impl::ActionFlag::Action_Flag_Initialize);
+				flag_.remove(detail::ActionFlag::Action_Flag_Initialize);
 
 				initialize();
 			}
 
-			if (flag_.has(impl::ActionFlag::Action_Flag_Deactivate))
+			if (flag_.has(detail::ActionFlag::Action_Flag_Deactivate))
 			{
-				flag_.remove(impl::ActionFlag::Action_Flag_Deactivate);
+				flag_.remove(detail::ActionFlag::Action_Flag_Deactivate);
 
 				reset();
 			}
@@ -54,7 +54,7 @@ namespace state
 			if (!update())
 				return false;
 
-			if (flag_.has(impl::ActionFlag::Action_Flag_Finalize))
+			if (flag_.has(detail::ActionFlag::Action_Flag_Finalize))
 				finalize();
 
 			return true;

@@ -13,7 +13,7 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\impl">
+    <Filter Include="头文件\detail">
       <UniqueIdentifier>{0a4d4290-7ef2-42f9-9bd0-eba33746e914}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -38,20 +38,20 @@
     <ClInclude Include="detail.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="impl\flag_def.hpp">
-      <Filter>头文件\impl</Filter>
+    <ClInclude Include="detail\flag_def.hpp">
+      <Filter>头文件\detail</Filter>
     </ClInclude>
     <ClInclude Include="flag.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="impl\flag_base.hpp">
-      <Filter>头文件\impl</Filter>
+    <ClInclude Include="detail\flag_base.hpp">
+      <Filter>头文件\detail</Filter>
     </ClInclude>
-    <ClInclude Include="impl\stdint.hpp">
-      <Filter>头文件\impl</Filter>
+    <ClInclude Include="detail\stdint.hpp">
+      <Filter>头文件\detail</Filter>
     </ClInclude>
-    <ClInclude Include="impl\time_traits.hpp">
-      <Filter>头文件\impl</Filter>
+    <ClInclude Include="detail\time_traits.hpp">
+      <Filter>头文件\detail</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
