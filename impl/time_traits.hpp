@@ -47,7 +47,7 @@ namespace state
 		template<typename T>
 		struct time_traits<seconds<T>>
 		{
-			using value_type = typename milliseconds<T>::type;
+			using value_type = typename seconds<T>::type;
 
 			static void increament(value_type& time, const value_type& diff)
 			{

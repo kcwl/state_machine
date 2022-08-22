@@ -136,12 +136,12 @@
     <ClInclude Include="flag.hpp" />
     <ClInclude Include="impl\flag_base.hpp" />
     <ClInclude Include="impl\flag_def.hpp" />
+    <ClInclude Include="impl\time_traits.hpp" />
     <ClInclude Include="player.hpp" />
     <ClInclude Include="state_action.hpp" />
     <ClInclude Include="state_machine.hpp" />
     <ClInclude Include="impl\stdint.hpp" />
     <ClInclude Include="time_tracker.hpp" />
-    <ClInclude Include="time_traits.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -32,9 +32,6 @@
     <ClInclude Include="time_tracker.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="time_traits.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="player.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -51,6 +48,9 @@
       <Filter>头文件\impl</Filter>
     </ClInclude>
     <ClInclude Include="impl\stdint.hpp">
+      <Filter>头文件\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\time_traits.hpp">
       <Filter>头文件\impl</Filter>
     </ClInclude>
   </ItemGroup>
