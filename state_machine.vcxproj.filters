@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\detail">
-      <UniqueIdentifier>{0a4d4290-7ef2-42f9-9bd0-eba33746e914}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="state_machine.cpp">
@@ -23,10 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="state_action.hpp">
+    <ClInclude Include="action.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="state_machine.hpp">
+    <ClInclude Include="machine.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="time_tracker.hpp">
@@ -38,22 +35,16 @@
     <ClInclude Include="detail.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="flag.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="detail\flag_base.hpp">
-      <Filter>头文件\detail</Filter>
-    </ClInclude>
-    <ClInclude Include="detail\stdint.hpp">
-      <Filter>头文件\detail</Filter>
-    </ClInclude>
-    <ClInclude Include="detail\time_traits.hpp">
-      <Filter>头文件\detail</Filter>
-    </ClInclude>
     <ClInclude Include="flag_def.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="state_machine_regist.hpp">
+    <ClInclude Include="regist.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="state.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="time_traits.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

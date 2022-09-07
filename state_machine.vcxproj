@@ -133,15 +133,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="detail.hpp" />
-    <ClInclude Include="flag.hpp" />
-    <ClInclude Include="detail\flag_base.hpp" />
+    <ClInclude Include="state.hpp" />
     <ClInclude Include="flag_def.hpp" />
-    <ClInclude Include="detail\time_traits.hpp" />
+    <ClInclude Include="time_traits.hpp" />
     <ClInclude Include="player.hpp" />
-    <ClInclude Include="state_action.hpp" />
-    <ClInclude Include="state_machine.hpp" />
-    <ClInclude Include="detail\stdint.hpp" />
-    <ClInclude Include="state_machine_regist.hpp" />
+    <ClInclude Include="action.hpp" />
+    <ClInclude Include="machine.hpp" />
+    <ClInclude Include="regist.hpp" />
     <ClInclude Include="time_tracker.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

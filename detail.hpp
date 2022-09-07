@@ -1,10 +1,10 @@
 #pragma once
 
-namespace statemachine
+namespace fsm
 {
-	template<typename T>
-	void ignore(const T&){}
+	template<typename _T>
+	void ignore(const _T&){}
 
-	template<typename T>
-	void ignore(const T*){}
+	template<typename _T>
+	void ignore(const _T*){}
 }

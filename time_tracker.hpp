@@ -1,23 +1,25 @@
 #pragma once
-#include "detail/time_traits.hpp"
+#include "time_traits.hpp"
 
-namespace statemachine
+namespace fsm
 {
-	template<typename Time, typename Traits = detail::time_traits<Time>>
+	template<typename _Time, typename Traits = time_traits<_Time>>
 	class baisc_time_tracker
 	{
 	public:
 		constexpr static auto zero = Traits::zero;
 
+		using value_type = _Time;
+
 	public:
-		baisc_time_tracker(Time t)
+		baisc_time_tracker(_Time t)
 			: expiry_time_(t)
 		{
 
 		}
 
 	public:
-		void update(Time diff)
+		void update(_Time diff)
 		{
 			Traits::increament(expiry_time_, diff);
 		}
@@ -27,18 +29,16 @@ namespace statemachine
 			return Traits::passed(expiry_time_);
 		}
 
-		void reset(Time diff)
+		void reset(_Time diff)
 		{
 			Traits::assignment(expiry_time_, diff);
 		}
 
 	private:
-		Time expiry_time_;
+		_Time expiry_time_;
 	};
 
-	template<typename T>
-	using micro_time_tracker = baisc_time_tracker<T, detail::time_traits<detail::milliseconds<T>>>;
+	using micro_timer = baisc_time_tracker<std::chrono::microseconds, time_traits<milliseconds<std::chrono::microseconds>>>;
 
-	template<typename T>
-	using second_time_tracker = baisc_time_tracker<T, detail::time_traits<detail::seconds<T>>>;
+	using second_timer = baisc_time_tracker<std::chrono::seconds, time_traits<seconds<std::chrono::seconds>>>;
 }

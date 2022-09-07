@@ -12,7 +12,7 @@ template<template<decltype(Flag)> typename PlayerAction>\
 struct state_traits<Flag,PlayerAction> \
 { \
 	template<typename... Args> \
-	static std::shared_ptr<basic_state_action<decltype(Flag)>> delivery(ActionFlag flag, Args&&... args) \
+	static auto delivery(decltype(Flag) flag, Args&&... args) \
 	{ \
 		return std::make_shared<PlayerAction<Flag>>(std::bind(Action, std::forward<Args>(args)...), flag);\
 	}\
@@ -23,5 +23,5 @@ public: \
 template<action_type f, typename... Args> \
 void pass(Args&&... args) \
 { \
-	add(state_traits<f,PlayerAction>::template delivery(action_flag_, this, std::forward<Args>(args)...)); \
+	add(state_traits<f,PlayerAction>::template delivery(f, this, std::forward<Args>(args)...)); \
 }

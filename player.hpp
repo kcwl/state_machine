@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
 #include "detail.hpp"
-#include "state_machine.hpp"
+#include "machine.hpp"
 
-namespace statemachine
+namespace fsm
 {
 	enum class MoveFlag :uint8_t
 	{
@@ -17,12 +17,12 @@ namespace statemachine
 	using namespace std::chrono_literals;
 
 	template<MoveFlag f>
-	class player_action : public default_state_action<MoveFlag, f>
+	class player_action : public action<MoveFlag, f>
 	{
 	public:
-		template<typename Func>
-		player_action(Func&& func, ActionFlag flag = ActionFlag::Action_Flag_None)
-			: default_state_action<MoveFlag, f>(std::forward<Func>(func), flag)
+		template<typename _Func, typename... _Args>
+		player_action(_Func&& func, _Args&&... args)
+			: action<MoveFlag, f>(std::forward<_Func>(func), std::forward<_Args>(args)...)
 		{
 
 		}
@@ -49,7 +49,7 @@ namespace statemachine
 		}
 	};
 
-	class player : public state_machine<std::chrono::microseconds, MoveFlag>
+	class player : public machine<MoveFlag, basic_action>
 	{
 	public:
 		player() = default;
