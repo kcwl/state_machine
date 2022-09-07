@@ -4,64 +4,40 @@
 namespace fsm
 {
 	template<typename _State>
-	class basic_action
+	class state_action
 	{
 	public:
-		template<typename _Func, typename... _Args>
-		basic_action(_Func&& f, _Args&&... args)
-		{
-			auto func = std::bind(std::forward<_Func>(f), std::forward<_Args>(args)...);
-
-			func_ = [func = std::move(func)]
-			{
-				func();
-			};
-		}
-
-		virtual ~basic_action() = default;
+		virtual ~state_action() = default;
 
 	public:
-		virtual void initialize() {};
+		virtual void initialize() = 0;
 
-		virtual void finalize() {}
+		virtual void finalize() = 0;
 
-		virtual void reset() {};
+		virtual void reset() = 0;
 
-		virtual void deactivate() {};
+		virtual void deactivate() = 0;
 
-		virtual _State state() { return{}; }
+		virtual bool invoke() = 0;
 
-		bool invoke()
-		{
-			func_();
-
-			return true;
-		}
-
-	private:
-		std::function<void()> func_;
+		virtual _State state() = 0;
 	};
 
-	template<typename _State, _State act>
-	class action : public basic_action<_State>
+	template<typename _State, _State st>
+	class action : public state_action<_State>
 	{
 	public:
 		using state_t = _State;
 
 	public:
-		template<typename _Func, typename... _Args>
-		action(_Func&& f, _Args&&... args)
-			: basic_action<_State>(std::forward<_Func>(f), std::forward<_Args>(args)...)
-		{
+		action() = default;
 
-		}
-
-		~action() = default;
+		virtual ~action() = default;
 
 	public:
 		state_t state()
 		{
-			return act;
+			return st;
 		}
 	};
 }

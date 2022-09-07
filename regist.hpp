@@ -4,24 +4,24 @@
 #define Regist_Begin(Action) \
 private: \
 using action_type = Action; \
-template<Action f, template<Action> typename PlayerAction> \
+template<action_type f>\
 struct state_traits;
 
 #define Regist_Content(Flag, Action) \
-template<template<decltype(Flag)> typename PlayerAction>\
-struct state_traits<Flag,PlayerAction> \
-{ \
-	template<typename... Args> \
-	static auto delivery(decltype(Flag) flag, Args&&... args) \
-	{ \
-		return std::make_shared<PlayerAction<Flag>>(std::bind(Action, std::forward<Args>(args)...), flag);\
+template<>\
+struct state_traits<action_type::Flag>\
+{\
+	template<typename... _Args>\
+	static auto delivery(_Args&&... args)\
+	{\
+		return std::make_shared<Action>();\
 	}\
-}
+};
 
-#define Regist_End(PlayerAction) \
+#define Regist_End() \
 public: \
 template<action_type f, typename... Args> \
 void pass(Args&&... args) \
 { \
-	add(state_traits<f,PlayerAction>::template delivery(f, this, std::forward<Args>(args)...)); \
+	add(state_traits<f>::template delivery(std::forward<Args>(args)...)); \
 }

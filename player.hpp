@@ -16,17 +16,9 @@ namespace fsm
 
 	using namespace std::chrono_literals;
 
-	template<MoveFlag f>
-	class player_action : public action<MoveFlag, f>
+
+	class walk_action : public action<MoveFlag, MoveFlag::walk>
 	{
-	public:
-		template<typename _Func, typename... _Args>
-		player_action(_Func&& func, _Args&&... args)
-			: action<MoveFlag, f>(std::forward<_Func>(func), std::forward<_Args>(args)...)
-		{
-
-		}
-
 	public:
 		void initialize() override
 		{
@@ -47,48 +39,112 @@ namespace fsm
 		{
 			std::cout << "player action dectivate" << std::endl;
 		}
+
+		bool invoke() override
+		{
+			std::cout << "player walk ....." << std::endl;
+			return true;
+		}
 	};
 
-	class player : public machine<MoveFlag, basic_action>
+	class run_action : public action<MoveFlag, MoveFlag::run>
 	{
 	public:
-		player() = default;
+		void initialize() override
+		{
+			std::cout << "player action initialize" << std::endl;
+		}
 
+		void finalize() override
+		{
+			std::cout << "player action finalize" << std::endl;
+		}
+
+		void reset() override
+		{
+			std::cout << "player action reset" << std::endl;
+		}
+
+		void deactivate() override
+		{
+			std::cout << "player action dectivate" << std::endl;
+		}
+
+		bool invoke() override
+		{
+			std::cout << "player run ....." << std::endl;
+			return true;
+		}
+	};
+
+	class jump_action : public action<MoveFlag, MoveFlag::jump>
+	{
+	public:
+		void initialize() override
+		{
+			std::cout << "player action initialize" << std::endl;
+		}
+
+		void finalize() override
+		{
+			std::cout << "player action finalize" << std::endl;
+		}
+
+		void reset() override
+		{
+			std::cout << "player action reset" << std::endl;
+		}
+
+		void deactivate() override
+		{
+			std::cout << "player action dectivate" << std::endl;
+		}
+
+		bool invoke() override
+		{
+			std::cout << "player jump ....." << std::endl;
+			return true;
+		}
+	};
+
+	class climb_action : public action<MoveFlag, MoveFlag::climb>
+	{
+	public:
+		void initialize() override
+		{
+			std::cout << "player action initialize" << std::endl;
+		}
+
+		void finalize() override
+		{
+			std::cout << "player action finalize" << std::endl;
+		}
+
+		void reset() override
+		{
+			std::cout << "player action reset" << std::endl;
+		}
+
+		void deactivate() override
+		{
+			std::cout << "player action dectivate" << std::endl;
+		}
+
+		bool invoke() override
+		{
+			std::cout << "player climb ....." << std::endl;
+			return true;
+		}
+	};
+
+	class player : public machine<MoveFlag, state_action>
+	{
 	public:
 		Regist_Begin(MoveFlag);
-			Regist_Content(MoveFlag::walk, &walk);
-			Regist_Content(MoveFlag::run, &run);
-			Regist_Content(MoveFlag::jump, &jump);
-			Regist_Content(MoveFlag::climb, &climb);
-		Regist_End(player_action);
-
-	private:
-		bool walk(int task)
-		{
-			ignore(task);
-			std::cout << "player is walking" << std::endl;
-			return true;
-		}
-
-		bool run(int task)
-		{
-			ignore(task);
-			std::cout << "player is running" << std::endl;
-			return true;
-		}
-
-		bool jump(int task)
-		{
-			ignore(task);
-			std::cout << "player is jumping" << std::endl;
-			return true;
-		}
-
-		bool climb(int task)
-		{
-			ignore(task);
-			std::cout << "player is climbing" << std::endl;
-			return true;
-		}
+			Regist_Content(walk, walk_action);
+			Regist_Content(run, run_action);
+			Regist_Content(jump, jump_action);
+			Regist_Content(climb, climb_action);
+		Regist_End();
 	};
 }

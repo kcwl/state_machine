@@ -8,11 +8,11 @@ int main()
 {
     fsm::player pl;
 
-    pl.pass<fsm::MoveFlag::walk>(1);
+    pl.pass<fsm::MoveFlag::walk>();
 
     pl.update();
 
-    pl.pass<fsm::MoveFlag::run>(1);
+    pl.pass<fsm::MoveFlag::run>();
 
     pl.update();
 

@@ -11,7 +11,7 @@
 
 namespace fsm
 {
-	template<typename _State, template<typename>typename _Action, typename _Timer = micro_timer>
+	template<typename _State, template<typename>typename _Action,  typename _Timer = micro_timer>
 	class machine
 	{
 		using drive_flag = basic_state<uint8_t, DriveFlag>;
